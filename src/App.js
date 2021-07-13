@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { Container, CssBaseline } from "@material-ui/core";
+import { useDispatch } from "react-redux";
+import CashTransactionList from "./components/cash-transactions/cash-transaction-list/CashTransactionList";
+import CreateCashTransaction from "./components/cash-transactions/create-cash-transaction/CreateCashTransaction";
+import useStyles from "./Styles";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import HomePage from "./components/home-page/HomePage";
+import SideMenu from "./components/layout/SideMenu";
+import Header from "./components/layout/Header";
 
-function App() {
+const App = () => {
+  const classes = useStyles();
+  const dispatch = useDispatch();
+
+  useEffect(() => {}, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Container maxWidth="lg">
+        <SideMenu />
+        <Header />
+        <h2>Hi</h2>
+        <Switch>
+          <Route path="/" exact component={HomePage} />
+          <Route path="/cash-transactions" component={CashTransactionList} />
+          <Route path="/create-cash-transaction" component={CreateCashTransaction} />
+        </Switch>
+      </Container>
+      <CssBaseline />
+    </Router>
   );
-}
+};
 
 export default App;
