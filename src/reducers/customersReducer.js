@@ -7,6 +7,7 @@ const initialState = {
 };
 
 const customersReducer = (state = initialState, action) => {
+
   switch (action.type) {
     case ActionTypes.FETCH_CUSTOMER_REQUEST:
       return {

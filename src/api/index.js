@@ -111,12 +111,12 @@ export const deleteCountry = (countryId) => axios.delete(url + base + "/Countrie
 
 
 /********************************************Credit Cards routes********************************************/
-export const listAllCreditCards = (pageNumber = PagingConstants.MinPageNumber,
-    pageSize = PagingConstants.DefaultPageSize) =>
+export const listAllCreditCards = (pageNumber = PagingConstants.MinPageNumber, pageSize = PagingConstants.DefaultPageSize) =>
 
     axios.get(url + base + `/credit-cards/list?pageNumber=${pageNumber}&pageSize=${pageSize}`);
 
-export const fetchCreditCardsByIBAN = (iban) => axios.get(url + base + "/credit-cards/" + iban);
+export const fetchCreditCardsByIBAN = (iban) =>
+    axios.get(url + base + "/credit-cards/" + iban);
 
 export const fetchCreditCardById = (creditCardId) => axios.get(url + base + "/credit-cards/" + creditCardId);
 
@@ -149,7 +149,14 @@ export const addOrEditCustomer = (customerId, data) => axios.put(url + "/custome
 
 
 /********************************************Districts routes********************************************/
-export const listAllDistricts = () => axios.get(url + base + "/districts/all");
+export const listDistricts = (cityId = null) => {
+    let relativeUrl = '/districts/list'
+
+    if (cityId)
+        relativeUrl = `${relativeUrl}?cityId=${cityId}`
+
+    return axios.get(url + base + relativeUrl);
+}
 
 export const fetchDistrictById = (districtId) => axios.get(url + base + "/districts/" + districtId);
 
