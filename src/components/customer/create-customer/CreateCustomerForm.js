@@ -26,6 +26,7 @@ const initialFieldValues = {
     nationality: '',
     gender: 'male',
     birthDate: new Date(),
+    mobile: '',
     address: {
         name: '',
         district: '',
@@ -33,7 +34,8 @@ const initialFieldValues = {
         countryId: '',
         street: '',
         postalCode: ''
-    }
+    },
+    isSysUser: false
 }
 
 const CreateCustomerForm = () => {
@@ -70,9 +72,22 @@ const CreateCustomerForm = () => {
                             name="identificationType"
                             value={values.identificationType}
                             onChange={handleInputChange}
-                            options={ }
+                            options={customerService.getIdentificatioTypes()}
                         />
 
+                        <Controls.DatePicker
+                            label="Birth Date"
+                            name="birthDate"
+                            value={values.birthDate}
+                            onChange={handleInputChange}
+                        />
+
+                        <Controls.Checkbox
+                            label="System User"
+                            name="isSysUser"
+                            value={values.isSysUser}
+                            onChange={handleInputChange}
+                        />
                     </Grid>
 
                     <Grid item xs={6}>
@@ -95,6 +110,12 @@ const CreateCustomerForm = () => {
                             value={values.fatherName}
                             onChange={handleInputChange}
                         />
+                        <Controls.Input
+                            label="Mobile"
+                            name="mobile"
+                            value={values.mobile}
+                            onChange={handleInputChange}
+                        />
                     </Grid>
                     <Grid>
                         <Controls.Input
@@ -112,7 +133,15 @@ const CreateCustomerForm = () => {
                             onChange={handleInputChange}
                             items={genderOptions}
                         />
-
+                        <div>
+                            <Controls.Button
+                                type="submit"
+                                text="Submit" />
+                            <Controls.Button
+                                text="Reset"
+                                color="default"
+                            />
+                        </div>
                     </Grid>
                 </Grid>
             </Form>
