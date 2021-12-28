@@ -1,7 +1,7 @@
 import { ActionTypes } from "../constants/actionTypes";
 
 const initialState = {
-    user: {},
+    user: {}, //just a comment
     loading: false,
     errors: {},
 };
